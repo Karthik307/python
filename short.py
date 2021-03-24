@@ -1,10 +1,11 @@
+##URL Shortner Using Pyhton and tinyurl service
 from tkinter import *
 import pyshorteners as p
 import pyqrcode
 import png 
 import PIL.Image
 import pyperclip
-
+#Building Basic frame 
 top = Tk()
 top.geometry("300x300")
 top.title("URL Shorter")
@@ -12,15 +13,17 @@ top.configure(bg="#000000")
 url=StringVar()
 url_address=StringVar()
 is_on=False
-
+#Creating Shorten URL
 def urlsh():
     s=url.get()
     y=p.Shortener()
     op=y.tinyurl.short(s)
     url_address.set(op)
+#function to copy Url to clipboard
 def urlcopy():
     y=url_address.get()
     pyperclip.copy(y)
+#Fucntion for generating QR Code
 def qrcode():
     qr_data =url.get()
     y=p.Shortener()
@@ -29,6 +32,7 @@ def qrcode():
     u.png('url.png', scale = 8)
     img =PIL.Image.open('url.png')
     img.show()
+#function for toggle (light / dark mode)
 def them():
     global is_on
     if is_on:
